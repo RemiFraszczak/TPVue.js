@@ -1,0 +1,35 @@
+<template>
+  <input v-if="btn" v-model="prenom"/>
+  <input v-if="btn" v-model="nom"/>
+  <input v-if="btn" v-model="date"/>
+  <input v-if="btn" v-model="adresse"/>
+  <button v-if="btn" @click="valid"/>
+  <p>{{ fullName }}</p>
+  
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  data: () => {
+    return {
+      btn : true,
+      prenom : null ,
+      nom: null,
+      date: null,
+      adresse: null,
+    }
+  },
+  methods : {
+    valid() {
+      if ((this.prenom != null) && (this.nom != null) && (this.date != null) && (this.adresse != null))
+      {
+      this.btn = false;
+      console.log('inscription valide');
+      }
+    }
+  },
+}
+)
+</script>
