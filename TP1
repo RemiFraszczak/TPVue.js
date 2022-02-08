@@ -1,0 +1,47 @@
+<template>
+  <input v-model="valeur"/>
+  <input v-model="choix" list="choix" id="choixs" name="test" />
+  <datalist id="choix">
+    <option value="km"/>
+    <option value="cm"/>
+    <option value="mm"/> </datalist>
+  <p>{{ fullName }}</p>
+  
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  data: () => {
+    return {
+      choix : '' ,
+      valeur: '',
+    }
+  },
+  
+  watch: {
+    valeur: function (newVal) {
+      this.fullName = newVal * 1000 + "km" + newVal / 100 + "cm" + newVal / 1000 + "mm";
+    },
+    
+  computed: {
+    fullName() {
+      if (this.choix == "km")
+      {
+        return this.valeur + "m" + "=" + this.valeur * 1000 + "km" ; 
+      }
+      else if (this.choix == "cm")
+      {
+        return this.valeur + "m" + "=" + this.valeur / 100 + "cm" ; 
+      }
+      else if (this.choix == "mm")
+      {
+        return this.valeur + "m" + "=" + this.valeur / 1000 + "mm"; 
+      }
+    }
+  }
+})
+}
+})
+</script>
